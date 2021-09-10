@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/clock/clock.iml" filepath="$PROJECT_DIR$/clock/clock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lift/lift.iml" filepath="$PROJECT_DIR$/lift/lift.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wash/wash.iml" filepath="$PROJECT_DIR$/wash/wash.iml" />
+    </modules>
+  </component>
+</project>
