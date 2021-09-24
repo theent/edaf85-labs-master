@@ -1,10 +1,11 @@
 
 import lift.LiftView;
+import lift.Monitor;
 import lift.Passenger;
 
 public class OnePersonRidesLift {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         LiftView  view = new LiftView();
         Passenger pass = view.createPassenger();
@@ -24,5 +25,9 @@ public class OnePersonRidesLift {
 
         pass.exitLift();                     // leave lift
         pass.end();                          // walk out (to the right)
+
+
+
+
     }
 }
