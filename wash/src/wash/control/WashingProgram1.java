@@ -3,6 +3,9 @@ package wash.control;
 import actor.ActorThread;
 import wash.io.WashingIO;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 public class WashingProgram1 extends ActorThread<WashingMessage> {
     private WashingIO io;
     private ActorThread<WashingMessage> temp;
@@ -49,10 +52,10 @@ public class WashingProgram1 extends ActorThread<WashingMessage> {
             WashingMessage ack1 = receive();
 
 
-            Thread.sleep(42 * 60000 / Settings.SPEEDUP);
+            Thread.sleep(30 * 60000 / Settings.SPEEDUP);
 
             temp.send(new WashingMessage(this, WashingMessage.TEMP_IDLE));
-            receive();
+            //receive();
 
 
             //water.send(new WashingMessage(this, WashingMessage.WATER_IDLE));
@@ -62,11 +65,15 @@ public class WashingProgram1 extends ActorThread<WashingMessage> {
             System.out.println("washing program 1 got " + ack6);
             Thread.sleep(1 * 60000 / Settings.SPEEDUP);
 
-            for (int i = 0; i <= 5; i++) {
+            System.out.println("ÄR VATTEN NIVÅN RÄTT? " +  io.getWaterLevel());
 
 
+            for (int i = 0; i < 5; i++) {
+
+                //System.out.println("KLOCKSLAGET ÄR: " + Instant.now());
                 water.send(new WashingMessage(this, WashingMessage.WATER_FILL, 10));
-                receive();
+                WashingMessage ack12 = receive();
+                System.out.println("washing program 1 got " + ack12);
 
                 Thread.sleep(2 * 60000 / Settings.SPEEDUP);
 
@@ -91,7 +98,9 @@ public class WashingProgram1 extends ActorThread<WashingMessage> {
             System.out.println("setting SPIN_OFF...");
             spin.send(new WashingMessage(this, WashingMessage.SPIN_OFF));
             WashingMessage ack2 = receive();
-            System.out.println("washing program 1 got " + ack2);
+            water.send(new WashingMessage(this, WashingMessage.WATER_IDLE));
+            WashingMessage ack11 = receive();
+            System.out.println("washing program 1 got " + ack11);
             // Now that the barrel has stopped, it is safe to open the hatch.
             io.lock(false);
 

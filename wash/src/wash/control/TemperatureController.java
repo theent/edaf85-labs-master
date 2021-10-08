@@ -45,8 +45,8 @@ while(true) {
                 targetTemp = m.getValue();
             }
             goal = false;
-            System.out.println("got " + m);
-            sender.send(new WashingMessage(this, WashingMessage.ACKNOWLEDGMENT));
+
+            //sender.send(new WashingMessage(this, WashingMessage.ACKNOWLEDGMENT));
 
         }
 

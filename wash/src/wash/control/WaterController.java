@@ -72,7 +72,7 @@ public class WaterController extends ActorThread<WashingMessage> {
                 }
                 else if(command == WashingMessage.WATER_DRAIN) {
                     double currWaterLevel  = io.getWaterLevel();
-                    if(currWaterLevel - (drainSpeed * dt) < 0 && !goal) {
+                    if(currWaterLevel == 0 && !goal) {
                         goal = true;
                         //io.drain(false);
                         sender.send(new WashingMessage(this, WashingMessage.ACKNOWLEDGMENT));

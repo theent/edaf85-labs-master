@@ -16,12 +16,14 @@ public class ActorThread<M> extends Thread {
     /** Called by another thread, to send a message to this thread. */
     public void send(M message) {
         // TODO: implement this method (one or a few lines)
+        //System.out.println("Kö STORLEK: " + queue.size());
         queue.add(message);
     }
     
     /** Returns the first message in the queue, or blocks if none available. */
     protected M receive() throws InterruptedException {
         // TODO: implement this method (one or a few lines)
+        //System.out.println("Kö STORLEK: " + queue.size());
         return (M) queue.take();
 
     }
@@ -31,6 +33,7 @@ public class ActorThread<M> extends Thread {
         within 'timeout' milliseconds. */
     protected M receiveWithTimeout(long timeout) throws InterruptedException {
         // TODO: implement this method (one or a few lines)
+        //System.out.println("Kö STORLEK: " + queue.size());
         return (M) queue.poll(timeout, TimeUnit.MILLISECONDS);
     }
 }

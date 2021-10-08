@@ -38,9 +38,7 @@ public class WashingProgram3 extends ActorThread<WashingMessage>{
             // Switch off heating
             temp.send(new WashingMessage(this, WashingMessage.TEMP_IDLE));
             
-            // Wait for temperature controller to acknowledge 
-            WashingMessage ack1 = receive();
-            System.out.println("got " + ack1);
+            // Wait for temperature controller to acknowledge
 
             // Drain barrel, which may take some time. To ensure the barrel
             // is drained before we continue, an acknowledgment is required.

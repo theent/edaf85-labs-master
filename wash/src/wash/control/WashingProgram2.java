@@ -50,12 +50,12 @@ public class WashingProgram2 extends ActorThread<WashingMessage> {
             WashingMessage ack1 = receive();
 
 
-            Thread.sleep(32 * 60000 / Settings.SPEEDUP);
+            Thread.sleep(20 * 60000 / Settings.SPEEDUP);
 
 
 
             temp.send(new WashingMessage(this, WashingMessage.TEMP_IDLE));
-            receive();
+            //receive();
             water.send(new WashingMessage(this, WashingMessage.WATER_DRAIN));
             receive();
 
@@ -70,11 +70,11 @@ public class WashingProgram2 extends ActorThread<WashingMessage> {
             temp.send(new WashingMessage(this, WashingMessage.TEMP_SET, 60));
             receive();
 
-            Thread.sleep(52 * 60000 / Settings.SPEEDUP);
+            Thread.sleep(30 * 60000 / Settings.SPEEDUP);
 
 
             temp.send(new WashingMessage(this, WashingMessage.TEMP_IDLE));
-            receive();
+            //receive();
 
 
 
@@ -100,8 +100,10 @@ public class WashingProgram2 extends ActorThread<WashingMessage> {
 
             }
 
-            Thread.sleep(3 * 60000 / Settings.SPEEDUP);
-
+            while(io.getWaterLevel() > 0) {
+                water.send(new WashingMessage(this, WashingMessage.WATER_DRAIN));
+                receive();
+            }
             spin.send(new WashingMessage(this, WashingMessage.SPIN_FAST));
             WashingMessage ack10 = receive();
             Thread.sleep(5 * 60000 / Settings.SPEEDUP);
