@@ -12,7 +12,7 @@ import wash.io.WashingIO;
  * 
  * It can be used after an emergency stop (program 0) or a power failure.
  */
-public class WashingProgram3 extends ActorThread<WashingMessage> {
+public class WashingProgram3 extends ActorThread<WashingMessage>{
 
     private WashingIO io;
     private ActorThread<WashingMessage> temp;
